@@ -1,9 +1,9 @@
 language: node_js
 sudo: required
-node_js: 
-  - 7.9.0
+node_js: stable
 
 cache:
+  apt: ture
   directories:
     - node_modules
 
@@ -17,7 +17,6 @@ before_install:
 # S: Build Lifecycle
 install:
   - npm install
-  - npm install hexo-deployer-git --save
 
 before_script:
  # - npm install -g gulp
@@ -27,8 +26,12 @@ script:
   - hexo generate
 
 after_script:
+  - git clone https://${GH_REF} .deploy_git
+  - cd .deploy_git
+  - git checkout master
+  - cd ../
+  - mv .deploy_git/.git/ ./public/
   - cd ./public
-  - git init
   - git config user.name "jeff_deng"
   - git config user.email "dfhelloworld@126.com"
   - git add .
@@ -37,5 +40,5 @@ after_script:
 
 env: 
   global:
-  - GH_REF: github.com/dfhelloworld/dfhelloworld.github.io.gi
+  - GH_REF: github.com/dfhelloworld/dfhelloworld.github.io.git
 # E: Build LifeCycle
