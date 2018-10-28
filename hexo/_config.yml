@@ -78,5 +78,5 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:dfhelloworld/dfhelloworld.github.io.git
+  repo: https://gh_token@github.com:dfhelloworld/dfhelloworld.github.io.git
   branch: master
